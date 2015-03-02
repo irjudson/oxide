@@ -27,8 +27,8 @@
             <div id="collapseTwo" class="accordion-body collapse in">
                 <div class="accordion-inner">
                     <ul>
-                        {{#each locations}}
-                            {{#link-to 'location' id tagName="li" class="sidebar-link"}} {{fa-icon "map-marker"}} {{name}}{{/link-to}}
+                        {{#each location in locations}}
+                            {{#link-to 'location' location.id tagName="li" class="sidebar-link"}} {{fa-icon "map-marker"}} {{location.name}}{{/link-to}}
                         {{/each}}
                     </ul>
                 </div>
@@ -46,8 +46,8 @@
             <div id="collapseDevices" class="accordion-body collapse-devices in">
                 <div class="accordion-inner">
                     <ul>
-                        {{#each devices}}
-                            {{#link-to 'device' id tagName="li" class="sidebar-link"}} {{fa-icon "cloud"}} {{name}}{{/link-to}}
+                        {{#each device in devices}}
+                            {{#link-to 'device' device.id tagName="li" class="sidebar-link"}} {{fa-icon "cloud"}} {{device.name}}{{/link-to}}
                         {{/each}}
                     </ul>
                 </div>
