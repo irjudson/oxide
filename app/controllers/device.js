@@ -41,6 +41,23 @@ export default Ember.ObjectController.extend({
         }
     }.property('tags'),
 
+    chartOptions: {
+        showArea: true,
+        lineSmooth: false,
+        axisX: {
+            showGrid: false
+        }
+    },
+
+    chartData: {
+        labels: ['Day1', 'Day2', 'Day3'],
+        series: [
+          [5, 4, 8],
+          [10, 2, 7],
+          [8, 3, 6]
+        ]
+    },
+
     actions: {
         selectNewPreset: function (preset) {
             if (!preset) {
