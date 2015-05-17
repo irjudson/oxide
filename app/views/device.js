@@ -4,5 +4,4 @@ export default Ember.View.extend({
     didInsertElement: function () {
         $('[type=checkbox]').bootstrapSwitch();
     }
-
 });

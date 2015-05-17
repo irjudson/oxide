@@ -1,7 +1,7 @@
 import DS from 'ember-data';
 
-var Device = DS.Model.extend({
 
+var Device = DS.Model.extend({
     deviceType: function () {
         var dt = 'defaultdevice',
             tags = this.get('tags'),
@@ -17,8 +17,29 @@ var Device = DS.Model.extend({
             }
         }
         return dt;
-    }.property('tags'),
+    }.property('deviceType'),
 
+   templateName: function () {
+        var dt = 'defaultdevice',
+            tags = this.get('tags'),
+            tag = null,
+            tsplit = null;
+        for (tag in tags) {
+            if (tags.hasOwnProperty(tag)) {
+                console.log('T: ' + tag + ' V: ' + tags[tag]);
+                tsplit = tags[tag].split(':');
+                if (tsplit[0] === 'type') {
+                    dt = tsplit[1];
+                }
+            }
+        }
+        if (this.container.has('template:-'+dt) || this.container.has('template:'+dt)) {
+            return dt;
+        } else {
+            return 'defaultdevice';
+        }
+    }.property('templateName'),
+    
     nitrogen_id: DS.attr('string'),
     name: DS.attr('string'),
     status: DS.attr('boolean', {defaultValue: false}),
