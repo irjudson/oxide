@@ -6,94 +6,51 @@ export default Ember.Controller.extend({
     subscribeToNitrogen: false,
 
     actions: {
-        createNewDevice: function (options) {
+        /**
+         * Subcribes to the Nitrogen Socket Message Stream, calling a
+         * callback on a given controller
+         * @param  {Controller}   originalController - The controller on which to call the callback
+         * @param  {string}       callback - The callback (passed as a string, since called via Ember Run Loop)
+         */
+        subscribeToNitrogen: function (originalController, callback) {
             var appController = this.get('appController'),
-                nitrogenService = appController.get('nitrogenService'),
-                currentUsers = appController.get('currentUser'),
-                apikey = currentUsers.content.get('api_key'),
-                newDevice;
+                nitrogenSession = appController.get('nitrogenSession');
 
-            if (apikey) {
-                options = _.defaults(options, {
-                    nickname: 'OxideDevice',
-                    name: 'Oxide Device',
-                    tags: ['oxide'],
-                    api_key: apikey
-                });
-
-                newDevice = new nitrogen.Device(options);
-                nitrogenService.connect(newDevice, function (err, session, principal) {
-                    console.log(session, principal);
-                });
-            }
-        },
-
-        subscribeToNitrogen: function () {
-            var appController = this.get('appController'),
-                nitrogenSession = appController.get('nitrogenSession'),
-                self = this;
-
-            if (this.get('subscribedToNitrogen')) {
+            if (this.get('subscribedToNitrogen') || !nitrogenSession) {
                 return;
             }
 
-            nitrogenSession.onMessage({
-                $or: [{
-                    type: 'location'
-                }]
-            }, function (message) {
-                console.log('Message Received. New Location:', message.body);
-
-                self.store.find('device', {
-                        nitrogen_id: message.from
-                    })
-                    .then(function (foundDevices) {
-                        var foundDevice;
-
-                        if (foundDevices && foundDevices.content && foundDevices.content.length > 0) {
-                            foundDevice = foundDevices.content[0];
-                            // TODO: Process incoming messages
-                        }
-                    });
+            nitrogenSession.onMessage({ type: 'location' }, message => {
+                originalController.send(callback, message);
             });
 
             this.set('subscribedToNitrogen', true);
         },
 
-        getMessage: function (principalId, messageLimit) {
+        /**
+         * Gets the last message for a given car from Nitrogen
+         * @param  {string}       principalId        - Id of the car for which the last message shall be retreived
+         * @param  {number}       messageLimit       - Number of last messages to retreive (usually 1)
+         * @param  {Controller}   originalController - The controller on which to call the callback
+         * @param  {string}       callback           - The callback (passed as a string, since called via Ember Run Loop)
+         */
+        getLastMessage: function (principalId, messageLimit, originalController, callback) {
             var appController = this.get('appController'),
                 nitrogenSession = appController.get('nitrogenSession'),
-                limit = (messageLimit) ? messageLimit : 0,
-                self = this;
+                limit = (messageLimit) ? messageLimit : 0;
 
             if (nitrogenSession && principalId) {
                 nitrogen.Message.find(nitrogenSession, {
-                        type: 'location',
-                        from: principalId
-                    }, {
-                        sort: {
-                            ts: -1
-                        },
-                        limit: limit
-                    },
-                    function (err, locations) {
-                        if (err) {
-                            return;
-                        }
-
-                        if (locations.length > 0) {
-                            self.store.find('device', {
-                                nitrogen_id: principalId
-                            }).then(function (foundDevices) {
-                                var foundDevice;
-
-                                if (foundDevices && foundDevices.content && foundDevices.content.length > 0) {
-                                    foundDevice = foundDevices.content[0];
-
-                                    // TODO: Process Messages
-                                }
-                            });
-                        }
+                    type: 'location', from: principalId
+                },
+                {
+                    sort: { ts: -1 },
+                    limit: limit
+                }, function (err, locations) {
+                    if (err) {
+                        return;
+                    }
+                        originalController.send(callback, locations, principalId);
                     }
                 );
             }

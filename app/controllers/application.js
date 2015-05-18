@@ -1,17 +1,14 @@
 import Ember from 'ember';
+import Config from '../config/environment';
 
-export default Ember.Controller.extend({
+export default Ember.Controller.extend({	
+    version: Config.APP.version,
+    fullConfig: Config.APP,
 
-    locations: function () {
-        return this.store.find('location');
-    }.property(),
-
-    devices: function () {
-        return this.store.find('device');
-    }.property(),
-
-    currentUser: function () {
-        return this.store.find('user', 'me');
-    }.property()
-
+    currentUser: function() {
+        return this.store.find('user').then(function(users) {
+        	console.log('TRYING TO FIND USER!!!');
+			if (users && users.length > 0) { return users[0]; }
+        });
+    }.property()    
 });
