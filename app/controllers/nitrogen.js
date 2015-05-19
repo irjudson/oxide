@@ -12,20 +12,20 @@ export default Ember.Controller.extend({
          * @param  {Controller}   originalController - The controller on which to call the callback
          * @param  {string}       callback - The callback (passed as a string, since called via Ember Run Loop)
          */
-        subscribeToNitrogen: function (originalController, callback) {
-            var appController = this.get('appController'),
-                nitrogenSession = appController.get('nitrogenSession');
+        // subscribeToNitrogen: function (originalController, callback) {
+        //     var appController = this.get('appController'),
+        //         nitrogenSession = appController.get('nitrogenSession');
 
-            if (this.get('subscribedToNitrogen') || !nitrogenSession) {
-                return;
-            }
+        //     if (this.get('subscribedToNitrogen') || !nitrogenSession) {
+        //         return;
+        //     }
 
-            nitrogenSession.onMessage({ type: 'location' }, message => {
-                originalController.send(callback, message);
-            });
+        //     nitrogenSession.onMessage({ type: 'location' }, message => {
+        //         originalController.send(callback, message);
+        //     });
 
-            this.set('subscribedToNitrogen', true);
-        },
+        //     this.set('subscribedToNitrogen', true);
+        // },
 
         /**
          * Gets the last message for a given car from Nitrogen
@@ -34,27 +34,27 @@ export default Ember.Controller.extend({
          * @param  {Controller}   originalController - The controller on which to call the callback
          * @param  {string}       callback           - The callback (passed as a string, since called via Ember Run Loop)
          */
-        getLastMessage: function (principalId, messageLimit, originalController, callback) {
-            var appController = this.get('appController'),
-                nitrogenSession = appController.get('nitrogenSession'),
-                limit = (messageLimit) ? messageLimit : 0;
+        // getLastMessage: function (principalId, messageLimit, originalController, callback) {
+        //     var appController = this.get('appController'),
+        //         nitrogenSession = appController.get('nitrogenSession'),
+        //         limit = (messageLimit) ? messageLimit : 0;
 
-            if (nitrogenSession && principalId) {
-                nitrogen.Message.find(nitrogenSession, {
-                    type: 'location', from: principalId
-                },
-                {
-                    sort: { ts: -1 },
-                    limit: limit
-                }, function (err, locations) {
-                    if (err) {
-                        return;
-                    }
-                        originalController.send(callback, locations, principalId);
-                    }
-                );
-            }
-        }
+        //     if (nitrogenSession && principalId) {
+        //         nitrogen.Message.find(nitrogenSession, {
+        //             type: 'location', from: principalId
+        //         },
+        //         {
+        //             sort: { ts: -1 },
+        //             limit: limit
+        //         }, function (err, locations) {
+        //             if (err) {
+        //                 return;
+        //             }
+        //                 originalController.send(callback, locations, principalId);
+        //             }
+        //         );
+        //     }
+        // }
     }
 
 });

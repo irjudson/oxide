@@ -60,7 +60,10 @@ export default Base.extend({
 
                 nitrogenEmberUtils.findOrCreateUser(store, session, principal)
                 .then(function (storedUser) {
-                    return nitrogenEmberUtils.updateOrCreateDevices(store, session, storedUser);
+                    console.log('Found User: '+storedUser);
+                    appController = self.container.lookup('controller:application');
+                    appController.set('currentUser', storedUser);
+                    return nitrogenEmberUtils.updateOrCreateDevices(store, session);
                 }).then(function () {
                     console.log('Authenticator: Resolving Login (Restore)', session);
                     appController = self.container.lookup('controller:application');
@@ -96,7 +99,10 @@ export default Base.extend({
 
                     nitrogenEmberUtils.findOrCreateUser(store, session, principal)
                     .then(function (storedUser) {
-                        return nitrogenEmberUtils.updateOrCreateDevices(store, session, storedUser);
+                        console.log('Found User: '+storedUser);
+                        appController = self.container.lookup('controller:application');
+                        appController.set('currentUser', storedUser);
+                        return nitrogenEmberUtils.updateOrCreateDevices(store, session);
                     }).then(function () {
                         var appController = self.container.lookup('controller:application');
 

@@ -1,54 +1,58 @@
 {
   "name": "oxide",
-  "version": "0.1.0",
+  "version": "0.0.0",
+  "description": "",
   "private": true,
   "directories": {
+    "doc": "doc",
     "test": "tests"
   },
   "scripts": {
     "start": "ember server",
     "build": "ember build",
-    "test": "grunt test"
+    "test": "grunt test && ember test"
   },
-  "repository": "https://github.com/nitrogenjs/oxide",
+  "repository": "",
   "engines": {
-    "node": ">= 0.10.0"
+    "node": "0.10.32"
   },
   "author": "",
   "license": "MIT",
   "devDependencies": {
     "body-parser": "^1.2.0",
-    "broccoli-asset-rev": "^2.0.0",
-    "broccoli-ember-hbs-template-compiler": "^1.6.1",
-    "connect-restreamer": "^1.0.1",
-    "ember-cli": "^0.1.12",
-    "ember-cli-6to5": "^3.0.0",
-    "ember-cli-app-version": "0.3.1",
-    "ember-cli-chartist": "^0.2.5",
-    "ember-cli-content-security-policy": "0.3.0",
-    "ember-cli-dependency-checker": "0.0.7",
-    "ember-cli-font-awesome": "0.0.4",
-    "ember-cli-htmlbars": "^0.6.0",
+    "broccoli-asset-rev": "2.0.2",
+    "connect-restreamer": "^1.0.2",
+    "ember-cli": "0.2.5",
+    "ember-cli-app-version": "0.3.3",
+    "ember-cli-babel": "^4.0.0",
+    "ember-cli-chartist": "^0.2.7",
+    "ember-cli-content-security-policy": "0.4.0",
+    "ember-cli-dependency-checker": "0.0.8",
+    "ember-cli-font-awesome": "0.0.9",
+    "ember-cli-htmlbars": "0.7.4",
     "ember-cli-ic-ajax": "0.1.1",
     "ember-cli-inject-live-reload": "^1.3.0",
-    "ember-cli-pretender": "0.3.1",
-    "ember-cli-qunit": "0.3.1",
-    "ember-cli-simple-auth": "^0.6.7",
-    "ember-cli-simple-auth-testing": "^0.7.3",
+    "ember-cli-inline-content": "^0.4.0",
+    "ember-cli-materialize": "^0.5.2",
+    "ember-cli-moment": "0.0.2",
+    "ember-cli-qunit": "0.3.9",
+    "ember-cli-sass": "3.3.0",
+    "ember-cli-simple-auth": "^0.8.0-beta.2",
     "ember-cli-uglify": "1.0.1",
-    "ember-export-application-global": "^1.0.0",
-    "ember-localstorage-adapter": "kurko/ember-localstorage-adapter#0.5.1",
-    "ember-notify": "^3.0.15",
-    "express": "^4.8.5",
-    "glob": "^4.0.5",
+    "ember-data": "1.0.0-beta.16.1",
+    "ember-export-application-global": "1.0.2",
+    "ember-json-api": "git+https://git@github.com/eneuhauser/ember-json-api.git#jsonapi-rc3",
+    "ember-localstorage-adapter": "0.5.3",
+    "express": "^4.12.3",
+    "glob": "^4.5.3",
     "grunt": "^0.4.5",
-    "grunt-contrib-jscs": "^0.1.8",
     "grunt-contrib-jshint": "^0.10.0",
+    "grunt-js-beautify": "^0.1.1",
+    "grunt-jscodesniffer": "^0.1.8",
     "grunt-jscs": "^0.8.1",
+    "liquid-fire": "ef4/liquid-fire#8fcefd057478ab6852d7b8b3fc8526aa5079553c",
     "load-grunt-tasks": "^1.0.0",
-    "nitrogen": "0.2.19"
+    "morgan": "^1.5.2"
   },
-  "dependencies": {
-    "ember-data": "^1.0.0-beta.14.1"
-  }
+  "dependencies": {}
 }

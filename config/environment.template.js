@@ -2,7 +2,7 @@
 
 module.exports = function (environment) {
     var ENV = {
-        modulePrefix: 'oxide',
+        modulePrefix: 'Oxide',
         environment: environment,
         baseURL: '/',
         locationType: 'hash',

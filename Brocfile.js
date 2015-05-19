@@ -23,32 +23,38 @@ var templateTree = new HtmlbarsCompiler('app/templates', {
 // along with the exports of each module as its value.
 // 
 // 
-app.import('bower_components/bootstrap/dist/js/bootstrap.js');
-app.import('bower_components/bootstrap/dist/css/bootstrap.css');
-app.import('bower_components/bootstrap/dist/fonts/glyphicons-halflings-regular.woff', { destDir: 'fonts' });
-app.import('bower_components/bootstrap/dist/fonts/glyphicons-halflings-regular.ttf', { destDir: 'fonts' });
+var app;
 
-app.import('bower_components/selectize/dist/js/standalone/selectize.js');
-app.import('bower_components/selectize/dist/css/selectize.css');
+// brocfile-env module hasn't been decided on how to expose more build options
 
-app.import('bower_components/flat-ui/dist/css/flat-ui.css');
-app.import('bower_components/flat-ui/dist/fonts/glyphicons/flat-ui-icons-regular.woff', { destDir: 'fonts/glyphicons' });
-app.import('bower_components/flat-ui/dist/fonts/glyphicons/flat-ui-icons-regular.ttf', { destDir: 'fonts/glyphicons' });
+app = new EmberApp();
 
-app.import('bower_components/flat-ui/dist/fonts/lato/lato-regular.woff', { destDir: 'fonts/lato' });
-app.import('bower_components/flat-ui/dist/fonts/lato/lato-regular.ttf', { destDir: 'fonts/lato' });
-app.import('bower_components/flat-ui/dist/fonts/lato/lato-bold.woff', { destDir: 'fonts/lato' });
-app.import('bower_components/flat-ui/dist/fonts/lato/lato-bold.ttf', { destDir: 'fonts/lato' });
+app.import(app.bowerDirectory + '/bootstrap/dist/js/bootstrap.js');
+app.import(app.bowerDirectory + '/bootstrap/dist/css/bootstrap.css');
+app.import(app.bowerDirectory + '/bootstrap/dist/fonts/glyphicons-halflings-regular.woff', { destDir: 'fonts' });
+app.import(app.bowerDirectory + '/bootstrap/dist/fonts/glyphicons-halflings-regular.ttf', { destDir: 'fonts' });
 
-app.import('bower_components/moment/min/moment-with-locales.js');
-app.import('bower_components/rangeslider.js/dist/rangeslider.min.js');
-app.import('bower_components/bootstrap-switch/dist/js/bootstrap-switch.min.js');
-app.import('bower_components/bootstrap-select/dist/css/bootstrap-select.min.css');
-app.import('bower_components/bootstrap-select/dist/js/bootstrap-select.js');
-app.import('bower_components/JavaScript-MD5/js/md5.js');
-app.import('bower_components/jquery-touchswipe/jquery.touchSwipe.min.js');
+app.import(app.bowerDirectory + '/selectize/dist/js/standalone/selectize.js');
+app.import(app.bowerDirectory + '/selectize/dist/css/selectize.css');
 
-app.import('bower_components/underscore/underscore-min.js', {
+app.import(app.bowerDirectory + '/flat-ui/dist/css/flat-ui.css');
+app.import(app.bowerDirectory + '/flat-ui/dist/fonts/glyphicons/flat-ui-icons-regular.woff', { destDir: 'fonts/glyphicons' });
+app.import(app.bowerDirectory + '/flat-ui/dist/fonts/glyphicons/flat-ui-icons-regular.ttf', { destDir: 'fonts/glyphicons' });
+
+app.import(app.bowerDirectory + '/flat-ui/dist/fonts/lato/lato-regular.woff', { destDir: 'fonts/lato' });
+app.import(app.bowerDirectory + '/flat-ui/dist/fonts/lato/lato-regular.ttf', { destDir: 'fonts/lato' });
+app.import(app.bowerDirectory + '/flat-ui/dist/fonts/lato/lato-bold.woff', { destDir: 'fonts/lato' });
+app.import(app.bowerDirectory + '/flat-ui/dist/fonts/lato/lato-bold.ttf', { destDir: 'fonts/lato' });
+
+app.import(app.bowerDirectory + '/moment/min/moment-with-locales.js');
+app.import(app.bowerDirectory + '/rangeslider.js/dist/rangeslider.min.js');
+app.import(app.bowerDirectory + '/bootstrap-switch/dist/js/bootstrap-switch.min.js');
+app.import(app.bowerDirectory + '/bootstrap-select/dist/css/bootstrap-select.min.css');
+app.import(app.bowerDirectory + '/bootstrap-select/dist/js/bootstrap-select.js');
+app.import(app.bowerDirectory + '/JavaScript-MD5/js/md5.js');
+app.import(app.bowerDirectory + '/jquery-touchswipe/jquery.touchSwipe.min.js');
+
+app.import(app.bowerDirectory + '/underscore/underscore-min.js', {
   'underscore': [
     'default'
   ]

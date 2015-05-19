@@ -6,13 +6,14 @@ export default Ember.ArrayController.extend({
     version: Ember.computed.alias('controllers.application.version'),
     appController: Ember.computed.alias('controllers.application'),
     nitrogenController: Ember.computed.alias('controllers.nitrogen'),
+    currentUser: Ember.computed.alias('controllers.application.currentUser'),
 
 	/*
 	 * Subscribe to Nitrogen on init, assign a handler for incoming socket messages
 	 */
-    subscribeToNitrogen: function () {
-        this.get('nitrogenController').send('subscribeToNitrogen', this, 'handleSocketMessage');
-    }.on('init'),
+    // subscribeToNitrogen: function () {
+    //     this.get('nitrogenController').send('subscribeToNitrogen', this, 'handleSocketMessage');
+    // }.on('init'),
 
     actions: {
 		/*
@@ -37,13 +38,13 @@ export default Ember.ArrayController.extend({
             var self = this;
 
             this.store.find('device', { nitrogen_id: principalId }).then(function (foundDevices) {
-                var foundDevice, i;
+                var foundDevice;
 
                 if (foundDevices && foundDevices.content && foundDevices.content.length > 0) {
                     foundDevice = foundDevices.content[0];
 
                     // Do something with message.body
-                    gps.pushObject(locations[i].body);
+                    // gps.pushObject(locations[i].body);
                     foundDevice.save();
 
                     self.send(callback, foundDevice);
