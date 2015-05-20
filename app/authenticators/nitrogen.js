@@ -60,12 +60,10 @@ export default Base.extend({
 
                 nitrogenEmberUtils.findOrCreateUser(store, session, principal)
                 .then(function (storedUser) {
-                    console.log('Found User: '+storedUser);
-                    appController = self.container.lookup('controller:application');
+                    var appController = self.container.lookup('controller:application');
                     appController.set('currentUser', storedUser);
                     return nitrogenEmberUtils.updateOrCreateDevices(store, session);
                 }).then(function () {
-                    console.log('Authenticator: Resolving Login (Restore)', session);
                     appController = self.container.lookup('controller:application');
                     appController.set('nitrogenSession', session);
                     appController.set('nitrogenService', nitrogenService);
@@ -100,7 +98,7 @@ export default Base.extend({
                     nitrogenEmberUtils.findOrCreateUser(store, session, principal)
                     .then(function (storedUser) {
                         console.log('Found User: '+storedUser);
-                        appController = self.container.lookup('controller:application');
+                        var appController = self.container.lookup('controller:application');
                         appController.set('currentUser', storedUser);
                         return nitrogenEmberUtils.updateOrCreateDevices(store, session);
                     }).then(function () {
@@ -124,7 +122,6 @@ export default Base.extend({
     */
     invalidate: function () {
         return new Ember.RSVP.Promise(function (resolve) {
-            console.log('Nitrogen authenticator invalidate.');
             nitrogenService = null;
             resolve({ user: null, accessToken: null });
         });

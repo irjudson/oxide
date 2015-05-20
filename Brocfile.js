@@ -28,6 +28,7 @@ var app;
 // brocfile-env module hasn't been decided on how to expose more build options
 
 app = new EmberApp();
+// app.import(app.bowerDirectory + '/moment/locale/en-gb.js');
 
 app.import(app.bowerDirectory + '/bootstrap/dist/js/bootstrap.js');
 app.import(app.bowerDirectory + '/bootstrap/dist/css/bootstrap.css');

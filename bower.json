@@ -26,7 +26,8 @@
     "jquery-touchswipe": "~1.6.8",
     "underscore": "~1.8.3",
     "pretender": "~0.6.0",
-    "flat-ui": "~2.2.2"
+    "flat-ui": "~2.2.2",
+    "ember-cli-moment-shim": "~0.1.0"
   },
   "resolutions": {
     "jquery": "~2.1.1"

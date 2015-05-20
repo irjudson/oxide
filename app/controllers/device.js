@@ -1,6 +1,8 @@
 import Ember from 'ember';
 
 export default Ember.ObjectController.extend({
+    needs: ['application'],
+    currentUser: Ember.computed.alias('controllers.application.currentUser'),
 
     title: function () {
         return this.get('model').get('name');
